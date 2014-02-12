@@ -43,9 +43,9 @@ class Table {
      * @param mixed $id es el valor correspondiente a la Primary Key de la tabla o un array con varias primary keys.
      * <pre>
      * array(
-     *        1,
-     *        2,
-     *        3
+     *        pk1,
+     *        pk2,
+     *        pk3
      *      );
      * </pre>
      * @return mixed fila seleccionada o array de filas seleccionadas
