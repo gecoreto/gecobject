@@ -79,6 +79,18 @@ foreach ($tabla as $row) {
     echo $row->fieldName."<br>";
 }
 ```
+- Recuperar registros por su primaryKey:
+La función findByPk() puedo retornar uno o varios registros dependiendo si recibe como parámetro un array() o una unica clave primaria:
+```php
+
+//Cambia 'tbl' por el nombre  que quieras e instancia la clase Table()
+use GecObject\DataBase\Table as tbl;
+
+$tabla = tbl::get('tableName')->findByPk(pk);
+foreach ($tabla as $row) {
+    echo $row->fieldName."<br>";
+}
+```
 
 We welcome corrections and new languages.
 
