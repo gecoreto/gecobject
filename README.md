@@ -65,9 +65,19 @@ define("ERROR_EXCEPTION", false);
 
 ## Guia de uso
 - Tan sencillo como:
-
 ```php
 require 'gecobject/config.php';
+```
+- Recuperar registros de una tabla:
+```php
+
+//Cambia 'tbl' por el nombre  que quieras e instacia la clase Table()
+use GecObject\DataBase\Table as tbl;
+
+$tabla = tbl::get('tableName')->findAll();
+foreach ($tabla as $row) {
+    echo $row->fieldName."<br>";
+}
 ```
 
 We welcome corrections and new languages.
