@@ -87,10 +87,16 @@ La función findByPk() puedo retornar uno o varios registros dependiendo si reci
 //Cambia 'tbl' por el nombre  que quieras e instancia la clase Table()
 use GecObject\DataBase\Table as tbl;
 
-$tabla = tbl::get('tableName')->findByPk(pk);
-foreach ($tabla as $row) {
-    echo $row->fieldName."<br>";
-}
+//Devuelve el registro al que pertenezca el identificador recibido como parámetro
+$tabla = tbl::get('tableName')->findByPk('id');
+echo $row->fieldName;
+
+//or
+
+//Devuelve los registro a los que pertenezca los identificadores recibidos como parámetro
+tbl::get('user')->findByPk(
+                    array('id1','id2','id3')
+                    );
 ```
 
 We welcome corrections and new languages.
