@@ -80,7 +80,7 @@ foreach ($tabla as $row) {
 }
 ```
 - Recuperar registros por su primaryKey:
-=========
+
 La función findByPk() puedo retornar uno o varios registros dependiendo si recibe como parámetro un array() o una unica clave primaria:
 ```php
 
