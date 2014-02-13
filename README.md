@@ -98,6 +98,33 @@ array(
      );
 </pre>  
 
+Ejemplo:
+
+```php
+
+//Cambia 'tbl' por el nombre  que quieras e instancia la clase Table()
+use GecObject\DataBase\Table as tbl;
+
+$tabla = tbl::get('tableName')->findAll(
+                                    //las columnas que quieres seleccionar
+                                    'fieldname1, fieldname2,fieldname3', 
+                                    //la cunsulta mysql que quieres ejecutar
+                                    "fieldname1='example@test.com'", 
+                                    //ordenar las filas
+                                    array(
+                                        //order ASC o DESC
+                                        'type' => "DESC",
+                                        //Ordenar por las columnas deseadas
+                                        'columns' => array('fieldname1')
+                                    ), 
+                                    $limit = 10
+                                );
+
+foreach ($tabla as $row) {
+    echo $row->fieldName."<br>";
+}
+```
+
 - Recuperar registros por su primaryKey:
 
 La función findByPk() puedo retornar uno o varios registros dependiendo si recibe como parámetro un array() o una unica clave primaria:
