@@ -3,7 +3,7 @@
 /**
  * @package Database
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
- * @link 
+ * @link https://github.com/gecoreto/gecobject
  * @author David Garzon <stylegeco@gmail.com>
  */
 
