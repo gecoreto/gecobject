@@ -85,7 +85,7 @@ El metodo ` tbl::get('tableName')->findAll($cols = '*', $where = '', $order = ar
 Donde:
 <pre>
 $where debe ser una cadena de condiciones en lenguaje de consultas MySQL 
-(p.ej., WHERE campo = value and campo2 LIKE "%nombre%"). 
+(p.ej., campo = value and campo2 LIKE "%nombre%"). 
 </pre>
 <pre>
 $cols debe ser una cadena con los campos que desea consultar separados por una ","
