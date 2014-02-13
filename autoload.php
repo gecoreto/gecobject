@@ -20,7 +20,7 @@
  */
 /*
  function __autoload($classname) {
-    //example = $classname = "GecObject\DataBase\Table"
+    //example: $classname = "GecObject\DataBase\Table"
     $classname = ltrim($classname, '\\');
     $filename = '';
     $namespace = '';
