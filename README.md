@@ -1,5 +1,4 @@
- GECOBJECT
- =========
+# GECOBJECT
 
 Geobject es una  librería desarrollada en PHP para facilitar los procesos del CRUD (créate, read, update, delete), permite cargar tablas y filas de bases de datos en  Mysql; Representándolas como objetos de php que ofrecen métodos para trabajar comodamente.
 
@@ -64,16 +63,11 @@ define("ERROR_EXCEPTION", false);
 ?>
 ```
 
-You'll find plenty more to play with in the [examples](examples/) folder.
-
-That's it. You should now be ready to use PHPMailer!
-
-## Localization
-PHPMailer defaults to English, but in the [language](language/) folder you'll find numerous (31 at the time of writing) translations for PHPMailer error messages that you may encounter. Their filenames contain [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the translations, for example `fr` for French. To specify a language, you need to tell PHPMailer which one to use, like this:
+## Guia de uso
+- Tan sencillo como:
 
 ```php
-// To load the French version
-$mail->setLanguage('fr', '/optional/path/to/language/directory/');
+require 'gecobject/config.php';
 ```
 
 We welcome corrections and new languages.
