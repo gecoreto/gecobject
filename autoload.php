@@ -8,7 +8,7 @@ require 'LogMysql/Log.php';
 require 'DataBase/Exception/ExceptionMysql.php';
 
 *Nota: si se presentan problemas al cargar los archivos:
-*   Reemplaza la función "__autoload" por los require arriba decritos
+*   Reemplaza la función "__autoload" por los require arriba descritos
 */
 function __autoload($classname) {
     $classname = ltrim($classname, '\\');
