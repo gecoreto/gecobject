@@ -80,20 +80,23 @@ foreach ($tabla as $row) {
 }
 ```
 El metodo ` tbl::get('tableName')->findAll($cols = '*', $where = '', $order = array(), $limit = '') `  retorna un conjunto de registros de la tabla que cumpla con las condiciones recibidas como parámetro. <br>
-     <pre>
+     
 Donde:
+<pre>
 $where debe ser una cadena de condiciones en lenguaje de consultas MySQL 
 (p.ej., WHERE campo = value and campo2 LIKE "%nombre%"). 
-
+</pre>
+<pre>
 $cols debe ser una cadena con los campos que desea consultar separados por una ","
 (p.ej., fieldname1, fieldname2, fieldname). 
-
+</pre>
+<pre>
 $order debe ser un Arreglo Asociativo
 array(
     'type' => ASC | DESC
     'columns' => array('column1', 'column2')
      );
-      </pre>
+</pre>  
 
 - Recuperar registros por su primaryKey:
 
