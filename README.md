@@ -71,7 +71,7 @@ require 'gecobject/config.php';
 - Recuperar registros de una tabla:
 ```php
 
-//Cambia 'tbl' por el nombre  que quieras e instacia la clase Table()
+//Cambia 'tbl' por el nombre  que quieras e instacia por medio de este la clase Table()
 use GecObject\DataBase\Table as tbl;
 
 $tabla = tbl::get('tableName')->findAll();
@@ -102,7 +102,7 @@ Ejemplo:
 
 ```php
 
-//Cambia 'tbl' por el nombre  que quieras e instancia la clase Table()
+//Cambia 'tbl' por el nombre  que quieras e instancia por medio de este la clase Table()
 use GecObject\DataBase\Table as tbl;
 
 $tabla = tbl::get('tableName')->findAll(
@@ -130,7 +130,7 @@ foreach ($tabla as $row) {
 La función findByPk() puedo retornar uno o varios registros dependiendo si recibe como parámetro un array() o una unica clave primaria:
 ```php
 
-//Cambia 'tbl' por el nombre  que quieras e instancia la clase Table()
+//Cambia 'tbl' por el nombre  que quieras e instacia por medio de este la clase Table()
 use GecObject\DataBase\Table as tbl;
 
 //Devuelve el registro al que pertenezca el identificador recibido como parámetro
@@ -143,6 +143,25 @@ echo $row->fieldName;
 tbl::get('user')->findByPk(
                     array('id1','id2','id3')
                     );
+```
+
+- Añadir un registro:
+
+```php
+
+//Cambia 'Row' por el nombre  que quieras e instacia la clase por medio de este RowTbl()
+use GecObject\DataBase\RowTbl as Row;
+
+$row = new Row('user');
+
+$row->nombre = "David";
+$row->email = "stylegeco@gmail.com";
+
+//$row->add() devueve false si algo salio mal o el valor del campo primary key
+if ($id = $row->add()) {
+    echo 'Nuevo registro insertado en la tabla: ' . $row->getTableName() . "<br>";
+    echo "Id de la ultima inserccion: $id";
+}
 ```
 
 We welcome corrections and new languages.
