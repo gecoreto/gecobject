@@ -109,7 +109,7 @@ Please *don't* use the SourceForge or Google Code projects any more.
 See [changelog](changelog.md).
 
 ## History
-1. PHPMailer was originally written in 2001 by Brent R. Matzelle as a [SourceForge project](http://sourceforge.net/projects/phpmailer/).
+1. ##PHPMailer was originally written in 2001 by Brent R. Matzelle as a [SourceForge project](http://sourceforge.net/projects/phpmailer/).
 - Marcus Bointon (coolbru on SF) and Andy Prevost (codeworxtech) took over the project in 2004.
 - Became an Apache incubator project on Google Code in 2010, managed by Jim Jagielski.
 - Marcus created his fork on [GitHub](https://github.com/Synchro/PHPMailer).
