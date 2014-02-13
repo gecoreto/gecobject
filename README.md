@@ -13,19 +13,16 @@ Requerimientos
 This software is licenced under the [ licencia MIT.](http://opensource.org/licenses/MIT). Please read LICENSE for information on the
 software availability and distribution.
 
-## Installation & loading
+## Installation & configuración 
 
 Descarga gecObject clonándolo  desde tu pc. Si no estás familiarizado con GIT o simplemente quieres el archivo comprimido has click en “Donwload zip” en la parte derecha de la pantalla.
 
 Luego copia la carpeta gecobject y su contenido en la raíz de tu proyecto php. 
-Gecobject provee el archivo “autoload.php” que se encarga de cargar automáticamente los archivos necesarios para el  correcto funcionamiento de la librería. Si usa una versión de php anterior a la 5.3 no funcionara correctamente el autoload ni la librería ya que esta implementa ` namespace ` que están presentes solo a partir de php 5.3 o superior. Sin embargo si llegase a presentar problemas en la carga de archivos y estas utilizando la versión correcta de php revisa los comentarios en el archivo [autoload.php](https://github.com/gecoreto/gecobject/blob/master/autoload.php).
+Gecobject provee el archivo  ` autoload.php ` que se encarga de cargar automáticamente los archivos necesarios para el  correcto funcionamiento de la librería. Si usa una versión de php anterior a la 5.3 no funcionara correctamente el autoload ni la librería ya que esta implementa ` namespace ` que están presentes solo a partir de php 5.3 o superior. Sin embargo si llegase a presentar problemas en la carga de archivos y estas utilizando la versión correcta de php revisa los comentarios en el archivo [autoload.php](https://github.com/gecoreto/gecobject/blob/master/autoload.php).
 
-PHPMailer is available via [Composer/Packagist](https://packagist.org/packages/phpmailer/phpmailer). Alternatively, just copy the contents of the PHPMailer folder into somewhere that's in your PHP `include_path` setting. If you don't speak git or just want a tarball, click the 'zip' button at the top of the page in GitHub.
+Finalmente un `gecobject/config.php';` para cargar la librería y todo debería funcionar!
 
-PHPMailer provides an SPL-compatible autoloader, and that is the preferred way of loading the library - just `require '/path/to/PHPMailerAutoload.php';` and everything should work. The autoloader does not throw errors if it can't find classes so it prepends itself to the SPL list, allowing your own (or your framework's) autoloader to catch errors. SPL autoloading was introduced in PHP 5.1.0, so if you are using a version older than that you will need to require/include each class manually.
-PHPMailer does *not* declare a namespace because namespaces were only introduced in PHP 5.3.
-
-### Minimal installation
+### Configuración
 
 While installing the entire package manually or with composer is simple, convenient and reliable, you may want to include only vital files in your project. At the very least you will need [class.phpmailer.php](class.phpmailer.php). If you're using SMTP, you'll need [class.smtp.php](class.smtp.php), and if you're using POP-before SMTP, you'll need [class.pop3.php](class.pop3.php). For all of these, we recommend you use [the autoloader](PHPMailerAutoload.php) too. You can skip the [language](language/) folder if you're not showing errors to users and can make do with English-only errors. You may need the additional classes in the [extras](extras/) folder if you are using those features, including NTLM authentication, advanced HTML-to-text conversion and ics generation.
 
@@ -33,41 +30,40 @@ While installing the entire package manually or with composer is simple, conveni
 
 ```php
 <?php
-require 'PHPMailerAutoload.php';
 
-$mail = new PHPMailer;
+/** Nombre del host en la base de datos 
+ * @global string DB_HOST
+ */
+define("DB_HOST", "localhost");
 
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup server
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'jswan';                            // SMTP username
-$mail->Password = 'secret';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+/** Nombre de la base de datos 
+ * @global string DB_NAME
+ */
+define("DB_NAME", "database_name");
 
-$mail->From = 'from@example.com';
-$mail->FromName = 'Mailer';
-$mail->addAddress('josh@example.net', 'Josh Adams');  // Add a recipient
-$mail->addAddress('ellen@example.com');               // Name is optional
-$mail->addReplyTo('info@example.com', 'Information');
-$mail->addCC('cc@example.com');
-$mail->addBCC('bcc@example.com');
+/** Usuario de la base de datos 
+ * @global string DB_USER
+ */
+define("DB_USER", "database_user");
 
-$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-$mail->isHTML(true);                                  // Set email format to HTML
+/** Password para acceder a la base de datos 
+ * @global string DB_PASSWORD
+ */
+define("DB_PASSWORD", "database_pass");
 
-$mail->Subject = 'Here is the subject';
-$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+/**Si es true Imprime el registro de mensajes
+ * @global boolean LOG
+ */
+define("LOG", true);
 
-if(!$mail->send()) {
-   echo 'Message could not be sent.';
-   echo 'Mailer Error: ' . $mail->ErrorInfo;
-   exit;
-}
+/** Si es true guarda las excepsiones generadas en consultas
+ *  mysql en un archivo de texto ubicado en LogMysql/error-mysql.txt
+ * 
+ * @global boolean ERROR_EXCEPTION
+ */
+define("ERROR_EXCEPTION", false);
 
-echo 'Message has been sent';
+?>
 ```
 
 You'll find plenty more to play with in the [examples](examples/) folder.
