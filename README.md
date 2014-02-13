@@ -69,6 +69,7 @@ define("ERROR_EXCEPTION", false);
 require 'gecobject/config.php';
 ```
 - Recuperar registros de una tabla:
+=========
 ```php
 
 //Cambia 'tbl' por el nombre  que quieras e instacia por medio de este la clase Table()
@@ -146,7 +147,7 @@ tbl::get('user')->findByPk(
 ```
 
 - Añadir un registro:
-
+=========
 ```php
 
 //Cambia 'Row' por el nombre  que quieras e instacia la clase por medio de este RowTbl()
