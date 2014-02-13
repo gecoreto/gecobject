@@ -12,7 +12,7 @@ Requerimientos
 This software is licenced under the [ licencia MIT.](http://opensource.org/licenses/MIT). Please read LICENSE for information on the
 software availability and distribution.
 
-## Installation & configuración 
+## Instalación & configuración 
 
 Descarga gecObject clonándolo  desde tu pc. Si no estás familiarizado con GIT o simplemente quieres el archivo comprimido has click en “Donwload zip” en la parte derecha de la pantalla.
 
@@ -165,54 +165,35 @@ if ($id = $row->add()) {
 }
 ```
 
-We welcome corrections and new languages.
+- Modificar un registro:
+=========
+```php
 
-## Documentation
+//Cambia 'tbl' por el nombre  que quieras e instacia por medio de este la clase Table()
+use GecObject\DataBase\Table as tbl;
 
-Generated documentation is [available online](http://phpmailer.github.io/PHPMailer/).
+$tabla = tbl::get('user');
 
-You'll find some basic user-level docs in the [docs](docs/) folder, and you can generate complete API-level documentation using the [generatedocs.sh](docs/generatedocs.sh) shell script in the docs folder, though you'll need to install [PHPDocumentor](http://www.phpdoc.org) first. You may find [the unit tests](test/phpmailerTest.php) a good source of how to do various operations such as encryption.
+$row = $tabla->findByPk(1);
+$row->nombre = "petronila";
+$row->email = "stylegeco@gmail.com";
 
-## Tests
+//$row->save() devueve false si algo salio mal o true si no hay errores
+if ($row->save()) {
+    echo $row->nombre. "<br>";
+    echo $row->email. "<br>";
+}
+```
 
-There is a PHPUnit test script in the [test](test/) folder.
+## Documentación
 
-Build status: [![Build Status](https://travis-ci.org/PHPMailer/PHPMailer.png)](https://travis-ci.org/PHPMailer/PHPMailer)
+Esta en desarrollo una documentación mas amplia, si tienes algun comentario no dudes en comunicarmelo, envialo al correo [stylegeco@gmail.com](stylegeco@gmail.com) o en [@stylegeco](https://twitter.com/stylegeco).
 
-If this isn't passing, is there something you can do to help?
+## Contribuir
 
-## Contributing
+Si quieres ayudarme en el desarrollo de este proyecto no lo dudes, tienes a tu disposición todos los script.
 
-Please submit bug reports, suggestions and pull requests to the [GitHub issue tracker](https://github.com/PHPMailer/PHPMailer/issues).
+## Sugerencias
 
-We're particularly interested in fixing edge-cases, expanding test coverage and updating translations.
-
-With the move to the PHPMailer GitHub organisation, you'll need to update any remote URLs referencing the old GitHub location with a command like this from within your clone:
-
-`git remote set-url upstream https://github.com/PHPMailer/PHPMailer.git`
-
-Please *don't* use the SourceForge or Google Code projects any more.
-
-## Changelog
-
-See [changelog](changelog.md).
-
-## History
-1. ##PHPMailer was originally written in 2001 by Brent R. Matzelle as a [SourceForge project](http://sourceforge.net/projects/phpmailer/).
-- Marcus Bointon (coolbru on SF) and Andy Prevost (codeworxtech) took over the project in 2004.
-- Became an Apache incubator project on Google Code in 2010, managed by Jim Jagielski.
-- Marcus created his fork on [GitHub](https://github.com/Synchro/PHPMailer).
-- Jim and Marcus decide to join forces and use GitHub as the canonical and official repo for PHPMailer.
-- PHPMailer moves to the [PHPMailer organisation](https://github.com/PHPMailer) on GitHub.
-
-### What's changed since moving from SourceForge?
-- Official successor to the SourceForge and Google Code projects.
-- Test suite.
-- Continuous integration with Travis-CI.
-- Composer support.
-- Public development.
-- Additional languages and language strings.
-- CRAM-MD5 authentication support.
-- Preserves full repo history of authors, commits and branches from the original SourceForge project.
-
-
+- [stylegeco@gmail.com](stylegeco@gmail.com)
+- [@stylegeco](https://twitter.com/stylegeco)
