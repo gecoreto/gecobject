@@ -150,7 +150,7 @@ tbl::get('user')->findByPk(
 =========
 ```php
 
-//Cambia 'Row' por el nombre  que quieras e instacia la clase por medio de este RowTbl()
+//Cambia 'Row' por el nombre  que quieras e instacia por medio de este la clase RowTbl()
 use GecObject\DataBase\RowTbl as Row;
 
 $row = new Row('user');
