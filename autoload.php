@@ -6,6 +6,9 @@ require 'DataBase/RowTbl.php';
 require 'DataBase/DataBase.php';
 require 'LogMysql/Log.php';
 require 'DataBase/Exception/ExceptionMysql.php';
+
+*Nota: si presentan problemas al cargar los archivos:
+*   Reemplaza la función "__autoload" por los require arriba decritos
 */
 function __autoload($classname) {
     $classname = ltrim($classname, '\\');
