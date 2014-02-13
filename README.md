@@ -187,7 +187,7 @@ if ($row->save()) {
 
 ## Documentación
 
-Esta en desarrollo una documentación mas amplia, si tienes algun comentario no dudes en comunicarmelo, envialo al correo [stylegeco@gmail.com](stylegeco@gmail.com) o en [@stylegeco](https://twitter.com/stylegeco).
+Esta en desarrollo una documentación mas amplia, si tienes algun comentario no dudes en comunicarmelo, envialo al correo [stylegeco@gmail.com](stylegeco@gmail.com) o en twitter [@stylegeco](https://twitter.com/stylegeco).
 
 ## Contribuir
 
