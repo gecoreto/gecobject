@@ -24,9 +24,7 @@ Finalmente un `gecobject/config.php';` para cargar la librería y todo debería 
 
 ### Configuración
 
-While installing the entire package manually or with composer is simple, convenient and reliable, you may want to include only vital files in your project. At the very least you will need [class.phpmailer.php](class.phpmailer.php). If you're using SMTP, you'll need [class.smtp.php](class.smtp.php), and if you're using POP-before SMTP, you'll need [class.pop3.php](class.pop3.php). For all of these, we recommend you use [the autoloader](PHPMailerAutoload.php) too. You can skip the [language](language/) folder if you're not showing errors to users and can make do with English-only errors. You may need the additional classes in the [extras](extras/) folder if you are using those features, including NTLM authentication, advanced HTML-to-text conversion and ics generation.
-
-## A Simple Example
+Define la configuración para conectarse a la base de datos en el archivo  [config.php](config.php)
 
 ```php
 <?php
