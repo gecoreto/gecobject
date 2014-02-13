@@ -4,7 +4,7 @@
  * Carga los script necesarios y define las constantes para hacer la conexion en la baes de datos
  * @package Gecobject
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
- * @link 
+ * @link https://github.com/gecoreto/gecobject/blob/master/config.php
  * @author David Garzon <stylegeco@gmail.com>
  */
 //
@@ -36,7 +36,7 @@ define("DB_PASSWORD", "");
 /**Si es true Imprime el registro de mensajes
  * @global boolean LOG
  */
-define("LOG", true);
+define("LOG", false);
 
 /** Si es true guarda las excepsiones generadas en consultas
  *  mysql en un archivo de texto ubicado en LogMysql/error-mysql.txt
