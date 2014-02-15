@@ -19,7 +19,7 @@ Descarga gecObject clonándolo  desde tu pc. Si no estás familiarizado con GIT 
 Luego copia la carpeta gecobject y su contenido en la raíz de tu proyecto php. 
 Gecobject provee el archivo  ` autoload.php ` que se encarga de cargar automáticamente los archivos necesarios para el  correcto funcionamiento de la librería. Si usa una versión de php anterior a la 5.3 no funcionara correctamente el autoload ni la librería ya que esta implementa ` namespace ` que están presentes solo a partir de php 5.3 o superior. Sin embargo si llegase a presentar problemas en la carga de archivos y estas utilizando la versión correcta de php revisa los comentarios en el archivo [autoload.php](https://github.com/gecoreto/gecobject/blob/master/autoload.php).
 
-Finalmente un c para cargar la librería y todo debería funcionar!
+Finalmente un ` require 'gecobject/config.php'; ` para cargar la librería y todo debería funcionar!
 
 ### Configuración
 
