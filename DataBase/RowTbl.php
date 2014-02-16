@@ -69,8 +69,8 @@ class RowTbl {
             case 1:
                 self::__construct1($args[0]);
                 break;
-            case 2:
-                self::__construct2($args[0], $args[1]);
+            case 3:
+                self::__construct3($args[0], $args[1], $args[2]);
                 break;
         }
     }
@@ -78,19 +78,19 @@ class RowTbl {
     private function __construct1($table_name) {
         $this->db = Db::database();
         $this->table_name = $table_name;
-        $this->fieldPk = Table::get($table_name)->getNameFieldPk();
-        Db::database()->queryasd = "DESC $table_name";
-        foreach (Db::database()->get_results_from_query() as $value)
+        $this->db->query = "DESC $table_name";
+        foreach ($this->db->get_results_from_query() as $value) {
+            if ($value['Key'] == "PRI")
+                $this->fieldPk = $value['Field'];
             $this->nameFields[] = $value['Field'];
+        }
     }
 
-    private function __construct2($table_name, $fieldPk) {
+    private function __construct3($table_name, $fieldPk, $nameFieldPK) {
         $this->fieldPk = $fieldPk;
         $this->db = Db::database();
         $this->table_name = $table_name;
-        $this->db->query = "DESC $table_name";
-        foreach ($this->db->get_results_from_query() as $value)
-            $this->nameFields[] = $value['Field'];
+        $this->nameFields = $nameFieldPK;
     }
 
     /**
