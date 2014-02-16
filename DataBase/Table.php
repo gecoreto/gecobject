@@ -32,10 +32,19 @@ class Table {
      * @var array $rows
      */
     private $rows = array();
+    private $nameFields = array();
+    private $nameFieldPK;
 
     function __construct($table_name) {
         $this->db = Db::database();
         $this->table_name = $table_name;
+        $this->db->query = "DESC $this->table_name";
+        foreach ($this->db->get_results_from_query() as $campo) {
+            if ($campo['Key'] == self::SQL_PRIMARY_KEY) {
+                $this->nameFieldPK = $campo['Field'];
+            }
+            $this->nameFields[] = $campo['Field'];
+        }
     }
 
     /**
@@ -51,25 +60,24 @@ class Table {
      * @return mixed fila seleccionada o array de filas seleccionadas
      */
     public function findByPk($id) {
-        $fieldPk = $this->getNameFieldPk();
         /* Busca varias filas en la tabla */
         if (is_array($id)) {
             $this->db->query = "";
             foreach ($id as $value)
-                $this->db->query .= "SELECT * FROM {$this->table_name} WHERE $fieldPk=$value;";
+                $this->db->query .= "SELECT * FROM {$this->table_name} WHERE  $this->nameFieldPK=$value;";
             $this->db->execute_multi_query();
             foreach ($this->db->get_results_from_query() as $row)
-                $filas[] = $this->setRow($row, $fieldPk);
+                $filas[] = $this->setRow($row, $this->nameFieldPK);
 
             return $filas;
         }
         /* Busca una solo fila en la tabla */
-        $this->db->query = "SELECT * FROM {$this->table_name} WHERE $fieldPk=$id;";
+        $this->db->query = "SELECT * FROM {$this->table_name} WHERE  $this->nameFieldPK=$id;";
         $result = $this->db->get_results_from_query();
         if (empty($result)) {
             return array();
         } else {
-            return $this->setRow($result[0], $fieldPk);
+            return $this->setRow($result[0], $this->nameFieldPK);
         }
     }
 
@@ -91,12 +99,11 @@ class Table {
      *              'columns' => array('column1', 'column2')
      *          );
      *      </pre>
-     * @param type $limit Limit
+     * @param string $limit Limit
      * @return array objetos de la clase Row
      */
     public function findAll($cols = '*', $where = '', $order = array(), $limit = '') {
         $this->rows = array();
-        $fieldPk = $this->getNameFieldPk();
         $orderby = "";
         if (array_key_exists('type', $order) && array_key_exists('columns', $order)) {
             $tipo = $order['type'];
@@ -106,26 +113,68 @@ class Table {
             }
         }
         if ($cols != "*")
-            $cols = "{$fieldPk},$cols";
+            $cols = "{ $this->nameFieldPK},$cols";
         $where = !empty($where) ? "WHERE $where " : '';
         $limit = !empty($limit) ? "LIMIT $limit " : '';
         $this->db->query = "SELECT $cols FROM {$this->table_name} $where $orderby $limit;";
         foreach ($this->db->get_results_from_query() as $row) {
-            $this->rows[] = $this->setRow($row, $fieldPk);
+            $this->rows[] = $this->setRow($row, $this->nameFieldPK);
         }
         return $this->rows;
+    }
+
+    /**
+     * Retorna una unica fila de la tabla que cumpla con las condiciones
+     * recibidas como parámetro. <br>
+     * <pre>
+     * Donde:
+     * $where debe ser una cadena de condiciones 
+     * en lenguaje de consultas MySQL 
+     * (p.ej., campo = value and campo2 LIKE "%nombre%"). 
+     * Si no recibe parametros, devolverá todos los registros de la tabla.</pre>
+     * @param string $cols Columnas que desea seleccionar separadas por ","
+     * @param string $where Condiciones
+     * @return RowTbl objeto de la clase RowTbl
+     */
+    public function find($cols = '*', $where = '') {
+        if ($cols != "*")
+            $cols = "{ $this->nameFieldPK},$cols";
+        $where = !empty($where) ? "WHERE $where " : '';
+        $this->db->query = "SELECT $cols FROM {$this->table_name} $where;";
+        $row = array_shift($this->db->get_results_from_query());
+        if (empty($row))
+            return [];
+        return $this->setRow($row, $this->nameFieldPK);
+    }
+
+    /**
+     * Retorna el conjunto de registros de la tabla que cumpla con el query recibido como parametro. <br>
+     * Mysql(p.ej., ORDER BY RAND() LIMIT 3). 
+     * @param string $query Limit
+     * @return array|object objetos de la clase RowTbl
+     */
+    public function findByQuery($query) {
+        $rows = [];
+        $this->db->query = "SELECT * FROM {$this->table_name} " . $query;
+        foreach ($this->db->get_results_from_query() as $row) {
+            $rows[] = $this->setRow($row, $this->nameFieldPK);
+        }
+        if (count($rows) == 1)
+            return $row[0];
+        return $rows;
     }
 
     /**
      * Crea una nueva fila de la tabla, representa la fila como un objeto
      * @param array $row array asociativo representa una fila en la tabla
      * @param string $fieldPk nombre de la columna asignada como primary key
-     * @return Row Objeto de de la clase Row 
+     * @return Row Objeto de de la clase RowTbl 
      */
     private function setRow($row, $fieldPk) {
-        $objeto = new RowTbl($this->table_name, $fieldPk);
+        $objeto = new RowTbl($this->table_name, $fieldPk, $this->nameFields);
         foreach ($row as $attribute => $value) {
-            $objeto->__set($attribute, $value);
+            if (in_array($attribute, $this->nameFields))
+                $objeto->__set($attribute, $value);
         }
         return $objeto;
     }
@@ -145,12 +194,7 @@ class Table {
      * @return string $fieldPk 
      */
     public function getNameFieldPk() {
-        $this->db->query = "DESC $this->table_name";
-        foreach ($this->db->get_results_from_query() as $campo) {
-            if ($campo['Key'] == self::SQL_PRIMARY_KEY) {
-                return $campo['Field'];
-            }
-        }
+        return $this->nameFieldPK;
     }
 
 }
