@@ -14,14 +14,16 @@ require 'autoload.php';
 header('Content-Type: text/html; charset=UTF-8');
 
 /** Nombre del host en la base de datos 
+ * Nota: Si presenta lentitud al generear la conexion con la DB en vez de poner "localhost" pon
+ * la direccion ip de tu servidor que por defecto es: 127.0.0.1
  * @global string DB_HOST
  */
-define("DB_HOST", "localhost");
+define("DB_HOST", "127.0.0.1");
 
 /** Nombre de la base de datos 
  * @global string DB_NAME
  */
-define("DB_NAME", "gecobject");
+define("DB_NAME", "nombre de la base de datos");
 
 /** Usuario de la base de datos 
  * @global string DB_USER
@@ -36,8 +38,7 @@ define("DB_PASSWORD", "");
 /**Si es true Imprime el registro de mensajes
  * @global boolean LOG
  */
-define("LOG", false);
-
+define("LOG", true
 /** Si es true guarda las excepsiones generadas en consultas
  *  mysql en un archivo de texto ubicado en LogMysql/error-mysql.txt
  * 
