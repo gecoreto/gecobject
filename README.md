@@ -33,7 +33,7 @@ En ` DB_HOST ` escribe la ip de tu servidor en vez de "localhost" o podria ser u
 <?php
 
 /** Nombre del host en la base de datos 
- *Nota: Si presenta lentitud al cargar los archivos en vez de poner "localhost" pon
+ *Nota: Si presenta lentitud al generarse la conexion con la base de datos en vez de "localhost" pon
  * la direccion ip de tu servidor que por defecto es: 127.0.0.1
  * @global string DB_HOST
  */
