@@ -25,13 +25,17 @@ Finalmente un ` require 'gecobject/config.php'; ` para cargar la librería y tod
 
 Define la configuración para conectarse a la base de datos en el archivo  [config.php](config.php)
 
+### Nota
+
+En ` DB_HOST ` escribe la ip de tu servidor en vez de "localhost" o podria ser un poco mas lenta la conexion con la base de datos. Referencia en  [stackoverflow](http://stackoverflow.com/questions/13439817/why-is-my-mysqli-connection-so-slow)
+
 ```php
 <?php
 
 /** Nombre del host en la base de datos 
  * @global string DB_HOST
  */
-define("DB_HOST", "localhost");
+define("DB_HOST", "127.0.0.1");
 
 /** Nombre de la base de datos 
  * @global string DB_NAME
