@@ -27,7 +27,7 @@ Define la configuración para conectarse a la base de datos en el archivo  [conf
 
 ### Nota
 
-En ` DB_HOST ` escribe la ip de tu servidor en vez de "localhost" o podria ser un poco mas lenta la conexion con la base de datos. Explicación en  [stackoverflow](http://stackoverflow.com/questions/13439817/why-is-my-mysqli-connection-so-slow)
+Especialmente en windows 7 la conexion con la base de datos podria ser un poco mas lenta para solucionarlo en ` DB_HOST ` escribe la ip de tu servidor en vez de "localhost" ej: ` define("DB_HOST", "127.0.0.1"); `. Explicación del problema en [stackoverflow](http://stackoverflow.com/questions/13439817/why-is-my-mysqli-connection-so-slow)
 
 ```php
 <?php
