@@ -81,6 +81,7 @@ require 'gecobject/config.php';
 //Cambia 'tbl' por el nombre  que quieras e instacia por medio de este la clase Table()
 use GecObject\DataBase\Table as tbl;
 
+//Devuelve todos los registros de la tabla
 $tabla = tbl::get('tableName')->findAll();
 foreach ($tabla as $row) {
     echo $row->fieldName."<br>";
