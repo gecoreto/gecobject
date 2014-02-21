@@ -38,7 +38,7 @@ define("DB_PASSWORD", "");
 /**Si es true Imprime el registro de mensajes
  * @global boolean LOG
  */
-define("LOG", true
+define("LOG", true);
 /** Si es true guarda las excepsiones generadas en consultas
  *  mysql en un archivo de texto ubicado en LogMysql/error-mysql.txt
  * 
