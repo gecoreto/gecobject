@@ -123,7 +123,11 @@ $tabla = tbl::get('tableName')->findAll(
                                     //las columnas que quieres seleccionar
                                     'fieldname1, fieldname2,fieldname3', 
                                     //la cunsulta mysql que quieres ejecutar
-                                    "fieldname1='example@test.com'", 
+                                    array(
+                                        "nombre" => "LIKE david",
+                                        "edad"=> "< 25",
+                                        "ciudad" => "bogota"
+                                    ), 
                                     //ordenar las filas
                                     array(
                                         //order ASC o DESC
