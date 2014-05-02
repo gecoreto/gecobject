@@ -91,8 +91,13 @@ El metodo ` tbl::get('tableName')->findAll($cols = '*', $where = '', $order = ar
      
 Donde:
 <pre>
-$where debe ser una cadena de condiciones en lenguaje de consultas MySQL 
-(p.ej., campo = value and campo2 LIKE "%nombre%"). 
+$where debe ser un array de condiciones con la siguiente estructura:
+array(
+    fieldName => value,
+)
+
+fieldName es el nombre del campo de la tabla que será utilizado en las condiciones de la consulta. 
+En value pueden utilizarse algunos operadores de comparación (>, <, >=, <=, != y LIKE). Si value no incluye ningún operador de comparación, se asume una comparación de igualdad. Por ejemplo, where=>array("precio"=>">100") devolverá todos las filas de la tabla que su precio sea superior a 100 (SELECT * from tabla WHERE precio > 100).
 </pre>
 <pre>
 $cols debe ser una cadena con los campos que desea consultar separados por una ","
