@@ -97,7 +97,8 @@ array(
 )
 </pre>
 fieldName es el nombre del campo de la tabla que será utilizado en las condiciones de la consulta. 
-En value pueden utilizarse algunos operadores de comparación (>, <, >=, <=, != y LIKE). Si value no incluye ningún operador de comparación, se asume una comparación de igualdad. \n
+En value pueden utilizarse algunos operadores de comparación (>, <, >=, <=, != y LIKE). Si value no incluye ningún operador de comparación, se asume una comparación de igualdad.
+
 Por ejemplo, array("precio" => ">100") devolverá todos las filas de la tabla que su precio sea superior a 100 (SELECT * from tabla WHERE precio > 100).
 <pre>
 $cols debe ser una cadena con los campos que desea consultar separados por una ","
