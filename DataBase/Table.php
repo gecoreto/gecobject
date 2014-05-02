@@ -102,7 +102,7 @@ class Table {
      * @param string $limit Limit
      * @return array objetos de la clase Row
      */
-    public function findAll($cols = '*', $where = '', $order = array(), $limit = '') {
+    public function findAll($cols = '*', $where = array(), $order = array(), $limit = '') {
         $this->rows = array();
         $orderby = "";
         if (array_key_exists('type', $order) && array_key_exists('columns', $order)) {
@@ -114,7 +114,7 @@ class Table {
         }
         if ($cols != "*")
             $cols = "{ $this->nameFieldPK},$cols";
-        $where = !empty($where) ? "WHERE $where " : '';
+        $where = !empty($where) ? self::parseWhere($where) : '';
         $limit = !empty($limit) ? "LIMIT $limit " : '';
         $this->db->query = "SELECT $cols FROM {$this->table_name} $where $orderby $limit;";
         foreach ($this->db->get_results_from_query() as $row) {
@@ -136,10 +136,10 @@ class Table {
      * @param string $where Condiciones
      * @return RowTbl objeto de la clase RowTbl
      */
-    public function find($cols = '*', $where = '') {
+    public function find($cols = '*', $where = array()) {
         if ($cols != "*")
             $cols = "{ $this->nameFieldPK},$cols";
-        $where = !empty($where) ? "WHERE $where " : '';
+        $where = !empty($where) ? self::parseWhere($where) : '';
         $this->db->query = "SELECT $cols FROM {$this->table_name} $where;";
         $row = array_shift($this->db->get_results_from_query());
         if (empty($row))
@@ -197,4 +197,19 @@ class Table {
         return $this->nameFieldPK;
     }
 
+    /**
+     * Retorna el where para la consulta sql. <br>
+     * @param array $values 
+     * @return String Devuelve un where para generar la consulta sql
+     */
+    private static function parseWhere($values){
+        $where = "WHERE ";
+        foreach ($values as $column => $val) {
+            $where .= "$column = '$val' AND ";
+        }
+        //remuevo el ultimo AND
+        $where = substr($where, 0, -4);
+        return $where;
+    }
+    
 }
