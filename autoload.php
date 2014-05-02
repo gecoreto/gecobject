@@ -8,7 +8,11 @@
   require 'DataBase/Exception/ExceptionMysql.php';
 
 
-/*Nota: Quita los comentarios a la funcion "__autoload" si deseas usar los include automaticamente*/
+/*Nota: Quita los comentarios a la funcion "__autoload" si deseas usar los include automaticamente 
+y comenta los require anteriores.
+(Asegurate de que la carpeta contenedora de la libreria tenga el nombre de "gecobject" y este en la raiz de tu 
+proyecto php)
+*/
 /**
  * La funcion "__autoload" se basa en los 'namespace' e incluye los siguientes archivos automaticamente
  * require 'DataBase/Table.php';
