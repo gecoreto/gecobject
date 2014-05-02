@@ -87,7 +87,7 @@ foreach ($tabla as $row) {
     echo $row->fieldName."<br>";
 }
 ```
-El metodo ` tbl::get('tableName')->findAll($cols = '*', $where = '', $order = array(), $limit = '') `  retorna un conjunto de registros de la tabla que cumpla con las condiciones recibidas como parámetro. <br>
+El metodo ` tbl::get('tableName')->findAll($cols = '*', $where = array(), $order = array(), $limit = '') `  retorna un conjunto de registros de la tabla que cumpla con las condiciones recibidas como parámetro. <br>
      
 Donde:
 <pre>
