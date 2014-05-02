@@ -205,9 +205,28 @@ class Table {
     private static function parseWhere($values){
         $where = "WHERE ";
         foreach ($values as $column => $val) {
-            $where .= "$column = '$val' AND ";
+            switch (true) {
+                case stripos($val, 'LIKE') === 0:
+                    $compare = "LIKE ";
+                    break;
+                case stripos($value, '>') === 0:
+                    $compare = ">";
+                    break;
+                case stripos($value, '<') === 0:
+                    $compare = "<";
+                    break;
+                case stripos($value, '!=') === 0:
+                    $compare = "!=";
+                    break;
+                default:
+                    $compare = "=";
+                    break;
+            }
+            // Elimina el comparador de la cadena $value
+            $val = str_ireplace($compare, '', $val);
+            $where .= "$column $compare '$val' AND ";
         }
-        //remuevo el ultimo AND
+        //Elimino el ultimo AND para no generar error en la sintacis sql
         $where = substr($where, 0, -4);
         return $where;
     }
