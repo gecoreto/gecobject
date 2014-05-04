@@ -1,8 +1,11 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Muestra el registro de las consultas de la libreria
+ * @package Gecobject
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link https://github.com/gecoreto/gecobject/blob/master/LogMysql/Log.php
+ * @author David Garzon <stylegeco@gmail.com>
  */
 
 namespace GecObject\LogMysql;
