@@ -209,13 +209,13 @@ class Table {
                 case stripos($val, 'LIKE') === 0:
                     $compare = "LIKE ";
                     break;
-                case stripos($value, '>') === 0:
+                case stripos($val, '>') === 0:
                     $compare = ">";
                     break;
-                case stripos($value, '<') === 0:
+                case stripos($val, '<') === 0:
                     $compare = "<";
                     break;
-                case stripos($value, '!=') === 0:
+                case stripos($val, '!=') === 0:
                     $compare = "!=";
                     break;
                 default:
