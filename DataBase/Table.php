@@ -113,7 +113,7 @@ class Table {
             }
         }
         if ($cols != "*")
-            $cols = "{ $this->nameFieldPK},$cols";
+            $cols = "{$this->nameFieldPK},$cols";
         $where = !empty($where) ? self::parseWhere($where) : '';
         $limit = !empty($limit) ? "LIMIT $limit " : '';
         $this->db->query = "SELECT $cols FROM {$this->table_name} $where $orderby $limit;";
