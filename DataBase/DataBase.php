@@ -91,15 +91,6 @@ final class DataBase {
      */
     private $num_rows;
 
-    function __construct() {
-        try {
-            if (!defined('DB_HOST') || !defined('DB_USER') || !defined('DB_PASSWORD') || !defined('DB_NAME'))
-                throw new \Exception("NO se definieron las constantes necesarias para conectar a la base de datos.");
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        }
-    }
-
     /**
      *  Al finalizar la ejecución se muestra el registro de acciones.
      */
@@ -114,6 +105,12 @@ final class DataBase {
      * @return Session
      */
     public static function database() {
+        try {
+            if (!defined('DB_HOST') || !defined('DB_USER') || !defined('DB_PASSWORD') || !defined('DB_NAME'))
+                throw new \Exception("No se definieron las constantes necesarias para conectar a la base de datos.");
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
         if (!isset(self::$_instance)) {
             $className = __CLASS__;
             self::$_instance = new $className;
@@ -161,7 +158,7 @@ final class DataBase {
      */
     public function execute_single_query($message = false) {
         $this->open_connection($message);
-        $this->connec->query($this->query) or ($this->errores("kjsdfhk"));
+        $this->connec->query($this->query) or ($this->errores("Error"));
         $this->last_id = mysqli_insert_id($this->connec);
         $this->affect_rows = mysqli_affected_rows($this->connec);
         if ($message)
