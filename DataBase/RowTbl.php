@@ -179,6 +179,8 @@ class RowTbl {
      * @return boolean retorna TRUE si todo salio bien o FALSE si hay un error
      */
     public function save() {
+        if (!isset($this->getAsArray()[$this->fieldPk]))
+            return false;
         $atributos = $this->getAsArray();
         foreach ($atributos as $col => $value) {
             $vals[] = $col . ' = "' . $value . '"';
@@ -235,4 +237,3 @@ class RowTbl {
     }
 
 }
-
