@@ -12,10 +12,10 @@ namespace GecObject\DataBase;
 use GecObject\DataBase\DataBase as Db;
 
 class Table {
+
     /** Identifica la clave primaria en Mysql
      * @const SQL_PRIMARY_KEY
      */
-
     const SQL_PRIMARY_KEY = "PRI";
 
     /** nombre de la tabla en la base de datos 
@@ -32,7 +32,13 @@ class Table {
      * @var array $rows
      */
     private $rows = array();
+    /** Array con los nombres correspondientes a los campos de la tabla
+     * @var array $rows
+     */
     private $nameFields = array();
+    /** Nombre correspondiente al campo de la Primary Key
+     * @var string $nameFieldPK
+     */
     private $nameFieldPK;
 
     function __construct($table_name) {
@@ -41,7 +47,8 @@ class Table {
         $this->db->query = "DESC $this->table_name";
         foreach ($this->db->get_results_from_query() as $campo) {
             if ($campo['Key'] == self::SQL_PRIMARY_KEY) {
-                $this->nameFieldPK = $campo['Field'];
+                if (empty($this->nameFieldPK)) //Si tiene dos Primary Key selecciono la primera
+                    $this->nameFieldPK = $campo['Field'];
             }
             $this->nameFields[] = $campo['Field'];
         }
@@ -202,7 +209,7 @@ class Table {
      * @param array $values 
      * @return String Devuelve un where para generar la consulta sql
      */
-    private static function parseWhere($values){
+    private static function parseWhere($values) {
         $where = "WHERE ";
         foreach ($values as $column => $val) {
             switch (true) {
@@ -226,9 +233,9 @@ class Table {
             $val = str_ireplace($compare, '', $val);
             $where .= "$column $compare '$val' AND ";
         }
-        //Elimino el ultimo AND para no generar error en la sintacis sql
+        //Elimino el ultimo AND para no generar error en la sintaxis sql
         $where = substr($where, 0, -4);
         return $where;
     }
-    
+
 }
