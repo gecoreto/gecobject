@@ -71,7 +71,7 @@ class Table {
         if (is_array($id)) {
             $this->db->query = "";
             foreach ($id as $value)
-                $this->db->query .= "SELECT * FROM {$this->table_name} WHERE  $this->nameFieldPK=$value;";
+                $this->db->query .= "SELECT * FROM {$this->table_name} WHERE  $this->nameFieldPK='$value';";
             $this->db->execute_multi_query();
             foreach ($this->db->get_results_from_query() as $row)
                 $filas[] = $this->setRow($row, $this->nameFieldPK);
@@ -79,7 +79,7 @@ class Table {
             return $filas;
         }
         /* Busca una solo fila en la tabla */
-        $this->db->query = "SELECT * FROM {$this->table_name} WHERE  $this->nameFieldPK=$id;";
+        $this->db->query = "SELECT * FROM {$this->table_name} WHERE  $this->nameFieldPK='$id';";
         $result = $this->db->get_results_from_query();
         if (empty($result)) {
             return array();
