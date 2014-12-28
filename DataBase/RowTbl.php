@@ -185,7 +185,7 @@ class RowTbl {
         foreach ($atributos as $col => $value) {
             $vals[] = $col . ' = "' . $value . '"';
         }
-        $this->db->query = "UPDATE $this->table_name SET " . implode(',', $vals) . " WHERE {$this->fieldPk}={$atributos[$this->fieldPk]} ;";
+        $this->db->query = "UPDATE $this->table_name SET " . implode(',', $vals) . " WHERE {$this->fieldPk}='{$atributos[$this->fieldPk]}';";
         $this->db->execute_single_query(true);
         if ($this->db->getAffectedRows() === null) {
             return false;
@@ -219,7 +219,7 @@ class RowTbl {
      * @return boolean 
      */
     public function delete() {
-        $this->db->query = "DELETE FROM {$this->table_name} WHERE {$this->fieldPk}={$this->__get($this->fieldPk)};";
+        $this->db->query = "DELETE FROM {$this->table_name} WHERE {$this->fieldPk}='{$this->__get($this->fieldPk)}';";
         $this->db->execute_single_query(true);
         if ($this->db->getAffectedRows() === null) {
             return false;
